@@ -3,15 +3,24 @@ import useProduct from "@/context/ProductContext";
 import React, { useEffect, useState } from "react";
 import { data } from '@/assets/assets.js'
 import Items from "@/components/Items";
+import Loader from "@/components/Loader";
 
 
 function Home() {
-    const { search, showSearch, fleg, setSearch, cartItem, setCartItem, cartData } = useProduct();
+    const { search, showSearch, setSearch } = useProduct();
 
     const [category, setCategory] = useState([]);
     const [all, setAll] = useState([]);
-    const [priceRenge, setPriceRenge] = useState(0);
+    const [priceRenge, setPriceRenge] = useState(1000);
     const [notAvailble, setNotAvailble] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 1500); 
+        return () => clearTimeout(timer);
+    }, []);
 
     const handleChange = (e) => {
 
@@ -37,29 +46,9 @@ function Home() {
     };
 
     const Renge = () => {
-        const filtered = data.filter(item => item.price == priceRenge);
+        const filtered = data.filter(item => item.price <= priceRenge);
         setAll(filtered.length > 0 ? filtered : data);
     };
-
-    useEffect(() => {
-        let appendData = null;
-        cartData.forEach(item => {
-            appendData = data.find(prod => prod.id == item.id);
-        });
-
-        if (fleg && appendData) {
-            setCartItem(prev => [...prev, appendData]);
-        }
-    }, [cartData]);
-
-    useEffect(() => {
-        const localCart = JSON.parse(localStorage.getItem("Cart"));
-        if (localCart) setCartItem(localCart);
-    }, []);
-
-    useEffect(() => {
-        localStorage.setItem("Cart", JSON.stringify(cartItem));
-    }, [cartItem]);
 
     useEffect(() => {
         Renge();
@@ -69,8 +58,12 @@ function Home() {
         isFilter();
     }, [category, search]);
 
+    if (isLoading) {
+        return <Loader />;
+    }
+
     return (
-        <div className="max-w-screen pb-10 lg:px-20">
+        <div className="max-w-screen bg-sky-100 pb-10 lg:px-20">
             {showSearch && (
                 <div className="flex justify-center mt-5 lg:hidden">
                     <input
@@ -118,7 +111,7 @@ function Home() {
                 </div>
 
                 <div>
-                    <h1 className="text-4xl font-bold mb-5">Product Listing</h1>
+                    <h1 className="text-black text-4xl font-bold mb-5">Product Listing</h1>
                     {notAvailble ? notAvailble : <div className="grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3  gap-2">
                         {
                             all.length > 0 ? all.slice(0, 7).map((item) => (

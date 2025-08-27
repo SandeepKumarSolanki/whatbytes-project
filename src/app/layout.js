@@ -22,10 +22,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
-        <ProductContextProvider className="bg-sky-100">
+      <body className='flex flex-col min-h-screen'>
+        <ProductContextProvider className="bg-sky-100 flex flex-col flex-1">
           <Navbar />
-          {children}
+          <main className='flex-grow'>{children}</main>
           <Footer />
         </ProductContextProvider>
       </body>

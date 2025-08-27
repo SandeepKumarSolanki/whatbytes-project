@@ -1,17 +1,22 @@
 'use client'
 import Image from "next/image";
 import useProduct from "@/context/ProductContext";
-import { useRouter } from "next/navigation"; 
+import { useRouter } from "next/navigation";
 
 function Items({ image, id, title, price }) {
-    const { AddToCart, setFleg } = useProduct();
+    const { addCart } = useProduct();
     const router = useRouter();
-    
+
+    const handleAdd = (e) => {
+        e.stopPropagation(); 
+        addCart(id);
+        alert("Added to cart");
+    };
 
     return (
         <div 
-            onClick={()=> router.push(`/product/${id}`)}
-            className="p-3 cursor-pointer"
+            onClick={() => router.push(`/product/${id}`)}
+            className="bg-sky-50  p-3 cursor-pointer rounded-2xl"
         >
             <Image  
                 src={image}
@@ -20,10 +25,10 @@ function Items({ image, id, title, price }) {
                 className="w-full h-[200px] object-contain bg-white"
                 alt={title}
             />
-            <h2 className="text-lg font-semibold mt-2">{title}</h2>
+            <h2 className="text-lg font-semibold mt-2 text-black">{title}</h2>
             <p className="text-gray-600 font-bold">${price}</p>
             <button
-               
+                onClick={handleAdd}
                 className="mt-2 border px-3 py-1 rounded bg-blue-600 text-white hover:bg-blue-700"
             >
                 Add to Cart
