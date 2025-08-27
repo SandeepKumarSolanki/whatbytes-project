@@ -63,7 +63,7 @@ function Home() {
     }
 
     return (
-        <div className="max-w-screen bg-sky-100 pb-10 lg:px-20">
+        <div className="max-w-screen bg-sky-50 pb-10 lg:px-20">
             {showSearch && (
                 <div className="flex justify-center mt-5 lg:hidden">
                     <input
@@ -106,6 +106,32 @@ function Home() {
                             <h3>{0}</h3>
                             <h3>{1000}</h3>
                         </div>
+                    </div>
+
+                    <div className="max-w-[200px] leading-7 rounded-md px-5 py-3 bg-white text-black mt-5">
+                        <h1 className="text-2xl">Filters</h1>
+
+                        <span className="text-1xl">Category</span>
+                        <div className="gap-2">
+                            <input type="checkbox" readOnly id="all" checked={category.length === 0 ? true : false} onClick={() => setCategory([])} />
+                            <label htmlFor="all" className="ml-1 text-[18px]">All</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="electronics" onChange={handleChange} value={'electronics'} />
+                            <label htmlFor="electronics" className="ml-1 text-[18px]">Electronics</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="clothing" onChange={handleChange} value={'clothing'} />
+                            <label htmlFor="clothing" className="ml-1 text-[18px]">Clothing</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="home" />
+                            <label htmlFor="home" className="ml-1 text-[18px]">Home</label>
+                        </div>
+
+                        <div>Price</div>
+                        <input type="number" min={0} max={5000} value={priceRenge} onChange={(e) => setPriceRenge(e.target.value)} className="border-black" />
+                        
                     </div>
 
                 </div>
