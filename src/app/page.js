@@ -52,7 +52,14 @@ function Home() {
         }
     }, [cartData]);
 
-    
+    useEffect(() => {
+        const localCart = JSON.parse(localStorage.getItem("Cart"));
+        if (localCart) setCartItem(localCart);
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem("Cart", JSON.stringify(cartItem));
+    }, [cartItem]);
 
     useEffect(() => {
         Renge();
@@ -109,7 +116,7 @@ function Home() {
                     </div>
 
                 </div>
-                
+
                 <div>
                     <h1 className="text-4xl font-bold mb-5">Product Listing</h1>
                     {notAvailble ? notAvailble : <div className="grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3  gap-2">
@@ -126,6 +133,7 @@ function Home() {
                         }
                     </div>}
                 </div>
+                
             </div>
         </div>
     );

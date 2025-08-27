@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <ProductContextProvider>
+        <ProductContextProvider className="bg-sky-100">
           <Navbar />
           {children}
           <Footer />

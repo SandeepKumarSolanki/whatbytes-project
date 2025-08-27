@@ -11,7 +11,7 @@ function Items({ image, id, title, price }) {
     return (
         <div 
             onClick={()=> router.push(`/product/${id}`)}
-            className="white  p-3 cursor-pointer"
+            className="p-3 cursor-pointer"
         >
             <Image  
                 src={image}
