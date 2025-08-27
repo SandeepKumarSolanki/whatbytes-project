@@ -7,7 +7,6 @@ import { useParams } from "next/navigation";
 const Page = () => {
   const params = useParams();
   const { id } = params;
-  console.log("Product ID:", id);
 
   const product = data.find((item) => item.id === Number(id));
 
