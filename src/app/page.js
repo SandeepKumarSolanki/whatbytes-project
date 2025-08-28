@@ -130,7 +130,7 @@ function Home() {
                         </div>
 
                         <div>Price</div>
-                        <input type="number" min={0} max={5000} value={priceRenge} onChange={(e) => setPriceRenge(e.target.value)} className="border-black" />
+                        <input type="number" value={priceRenge} onChange={(e) => setPriceRenge(e.target.value)} className="border-gray-400 m-2 p-2" />
                         
                     </div>
 

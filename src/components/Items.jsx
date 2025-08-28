@@ -22,13 +22,13 @@ function Items({ image, id, title, price }) {
                 src={image}
                 width={100} 
                 height={100} 
-                className="w-full h-[200px] object-contain bg-white"
+                className="w-full h-[200px] object-contain bg-white rounded-2xl"
                 alt={title}
             />
             <h2 className="text-lg font-semibold mt-2 text-black">{title}</h2>
             <p className="text-gray-600 font-bold">${price}</p>
             <button
-                onClick={handleAdd}
+                onClick={() => addCart(id)}
                 className="mt-2 border px-3 py-1 rounded bg-blue-600 text-white hover:bg-blue-700"
             >
                 Add to Cart

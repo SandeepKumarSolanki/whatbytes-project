@@ -4,9 +4,11 @@ import { data } from "@/assets/assets";
 import Image from "next/image";
 import useProduct from "@/context/ProductContext";
 import Loader from "@/components/Loader";
+import { useParams } from "next/navigation";
 
 function page({ params }) {
-  const { id } = params;
+  const {id} = useParams()
+  // const { id } = params;
   const [product, setProduct] = useState(null);
   const { currency, addCart } = useProduct();
   const [isLoading, setIsLoading] = useState(true);
@@ -34,6 +36,7 @@ function page({ params }) {
         <div className="bg-white shadow-lg rounded-lg overflow-hidden md:flex">
           <div className="md:w-1/2">
             <Image
+              style={{width:"auto",height:"auto"}}
               src={product.image}
               alt={product.title}
               width={500}
@@ -45,7 +48,7 @@ function page({ params }) {
             <h1 className="text-3xl font-bold mb-2 text-black">{product.title}</h1>
             <p className="text-gray-600 mb-4">{product.description}</p>
             <div className="flex justify-between items-center mb-4">
-              <span className="text-2xl font-bold">
+              <span className="text-2xl font-bold text-black">
                 {currency}
                 {product.price}
               </span>

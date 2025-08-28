@@ -48,9 +48,9 @@ function Cart() {
                     {item.price}
                   </span>
                   <div className="flex items-center gap-2 mt-2">
-                    <button onClick={() => decrementCart(item.id)} className="bg-gray-500 px-2 py-1 rounded">-</button>
-                    <span className="text-white">{item.quantity}</span>
-                    <button onClick={() => addCart(item.id)} className="bg-gray-500 px-2 py-1 rounded">+</button>
+                    <button onClick={() => decrementCart(item.id)} className="bg-gray-300 hover:bg-gray-500 hover:text-white px-2 py-1 rounded">-</button>
+                    <span className="text-black">{item.quantity}</span>
+                    <button onClick={() => addCart(item.id)} className="bg-gray-300 hover:bg-gray-500 hover:text-white px-2 py-1 rounded">+</button>
                   </div>
                 </div>
               </div>
